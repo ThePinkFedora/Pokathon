@@ -66,11 +66,6 @@ const urls = {
 //https://pokeapi.co/api/v2/
 
 
-axios.get("https://pokeapi.co/api/v2/pokemon/ditto",axiosConfig).then(response => {
-    let preElement = document.createElement("pre");
-    preElement.innerText = JSON.stringify(response.data, null, 4);
-    document.querySelector("body").appendChild(preElement);
-});
 
 
 /**
@@ -150,3 +145,9 @@ function findByName(name){
 } 
 
 buildPokemonListAsync();
+
+
+
+
+
+//# Search Methods

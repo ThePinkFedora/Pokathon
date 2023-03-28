@@ -193,7 +193,7 @@ function getValuesAsync(name){
     return new Promise((resolve,reject) => {
         let pokemonObj = findByName(name);
         if(pokemonObj.sprite !== null){
-            resolve(pokemonObj.sprite);
+            resolve(pokemonObj);
             return;
         }
 

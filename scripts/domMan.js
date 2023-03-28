@@ -1,8 +1,8 @@
 
 const elements = {
     searchForm: document.getElementById("form"),
-    results: document.getElementById("results"),
-    favorites: document.getElementById("favorites"),
+    results: document.querySelector(".results"),
+    favorites: document.querySelector(".favorites"),
     searchField: document.getElementById("searchField"),
     typeSelect: document.getElementById("typeSelect"),
 };

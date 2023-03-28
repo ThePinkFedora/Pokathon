@@ -65,7 +65,12 @@ const urls = {
 
 //https://pokeapi.co/api/v2/
 
-
+function removeFavorite(name){
+    let index = favoritePokemon.indexOf(name);
+    if(index>-1){
+        array.splice(index, 1); 
+    }
+}
 
 
 /**

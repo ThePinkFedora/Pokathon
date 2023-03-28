@@ -13,13 +13,36 @@ elements.searchForm.addEventListener('submit',e=>{
 });
 
 
-document.querySelectorAll(".result__icon--heart").forEach(element => {
+let hearts = document.querySelectorAll(".pokemon-card__icon--heart");
+console.log(hearts);
+document.querySelectorAll(".pokemon-card__icon--heart").forEach(element => {
     element.addEventListener('click',()=>{
+        
         let pokemon = element.dataset.pokemon;
 
-        let card = element.closest("results__card");
+        let card = element.closest(".pokemon-card");
 
         favoritePokemon.push(pokemon);
-        elements.favorites.appendChild(card);
+        moveCardToFavorites(card);
     });
 });
+
+document.querySelectorAll(".pokemon-card__icon--delete").forEach(element => {
+    element.addEventListener('click',()=>{
+        
+        let pokemon = element.dataset.pokemon;
+
+        let card = element.closest(".pokemon-card");
+
+        removeFavorite(pokemon);
+        moveCardToResults(card);
+    });
+});
+
+
+function moveCardToFavorites(card){
+    elements.favorites.appendChild(card);
+}
+function moveCardToResults(card){
+    elements.results.appendChild(card);
+}

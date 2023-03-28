@@ -54,6 +54,24 @@ main {
         
     }
 
+    
+
+    // &__card {
+    //     border: 2px solid red;
+    //     width: 10rem;
+    //     margin-right: 2rem;
+    //     margin-bottom: 2rem;
+    // }
+
+    
+}
+
+.pokemon-card{
+    border: 2px solid red;
+    width: 10rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+
     &__icon {
         width: 2rem;
     }
@@ -61,33 +79,24 @@ main {
     &__image {
         width: 100%;
     }
-
-    &__card {
-        border: 2px solid red;
-        width: 10rem;
-        margin-right: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    
 }
 
 .favorites {
     border: 2px solid blueviolet;
     padding: 1rem;
 
-    &__card {
-        width: 10rem;
-        border: 2px solid red;
-    }
+    // &__card {
+    //     width: 10rem;
+    //     border: 2px solid red;
+    // }
 
-    &__icon {
-        width: 2rem;
-    }
+    // &__icon {
+    //     width: 2rem;
+    // }
 
-    &__image {
-        width: 100%;
-    }
+    // &__image {
+    //     width: 100%;
+    // }
     
 
 }

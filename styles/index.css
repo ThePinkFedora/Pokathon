@@ -43,30 +43,21 @@ main {
   display: flex;
   flex-wrap: wrap;
 }
-.results__icon {
-  width: 2rem;
-}
-.results__image {
-  width: 100%;
-}
-.results__card {
+
+.pokemon-card {
   border: 2px solid red;
   width: 10rem;
   margin-right: 2rem;
   margin-bottom: 2rem;
 }
+.pokemon-card__icon {
+  width: 2rem;
+}
+.pokemon-card__image {
+  width: 100%;
+}
 
 .favorites {
   border: 2px solid blueviolet;
   padding: 1rem;
-}
-.favorites__card {
-  width: 10rem;
-  border: 2px solid red;
-}
-.favorites__icon {
-  width: 2rem;
-}
-.favorites__image {
-  width: 100%;
 }/*# sourceMappingURL=index.css.map */

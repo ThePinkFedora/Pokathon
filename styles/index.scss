@@ -105,6 +105,10 @@ main {
         height: 5rem;
     }
 
+    &__title-image{
+        width: 10rem;
+    }
+
     &__cards {
         display: flex;
         flex-wrap: wrap;

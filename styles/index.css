@@ -82,6 +82,9 @@ main {
   width: 100%;
   height: 5rem;
 }
+.results__title-image {
+  width: 10rem;
+}
 .results__cards {
   display: flex;
   flex-wrap: wrap;

@@ -81,6 +81,16 @@ main {
   width: 20rem;
   padding-bottom: 1rem;
 }
+.favorites__card {
+  width: 10rem;
+  border: 2px solid red;
+}
+.favorites__icon {
+  width: 2rem;
+}
+.favorites__image {
+  width: 100%;
+}
 
 footer {
   width: 100%;

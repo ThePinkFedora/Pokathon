@@ -8,17 +8,17 @@ const elements = {
     typeSelect: document.getElementById(".nav__dropdown"),
 };
 
-// function clearResults(){
-//     elements.results.innerHTML="";
-// }
+function clearResults(){
+    elements.results.innerHTML="";
+}
 
-// function generateResults(pokemonList){
-//     clearResults();
-//     for(let p of pokemonList){
-//         let card = createPokemonCard(p);
-//         elements.results.appendChild(card);
-//     }
-// }
+function generateResults(pokemonList){
+    clearResults();
+    for(let p of pokemonList){
+        let card = createPokemonCard(p);
+        elements.results.appendChild(card);
+    }
+}
 
 function createPokemonCard(pokemon){
 

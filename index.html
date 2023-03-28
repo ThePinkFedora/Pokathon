@@ -3,47 +3,96 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokemon</title>
+    <title>Pokemon Scavenger</title>
+    <link href="./styles/index.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
-    <header></header>
+    <header>
+      <section class="title">
+        <img class="title__image" src="#" />
+      </section>
+      <nav class="nav">
+        <form class="nav__form" id="form" name="form">
+          <div class="nav__search">
+            <input class="nav__search-bar" placeholder="Search for a Pokemon:" type="search" name="search" id="search" />
+          </div>
+          <div class="nav__radios-dropdowns">
+            <div class="nav__dropdown-div">
+              <select calss="nav__dropdown" name="type" id="type">
+                <option value="default">type</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </nav>
+    </header>
     <main>
-      <form id="searchForm">
-        <label for="search">Search</label><input type="search" name="search" id="search" />
-        <select id="typeSelect" name="type">
-          <option value="any">any</option>
-          <option value="grass">grass</option>
-          <option value="normal">normal</option>
-          <option value="fightin">fighting</option>
-          <option value="flying">flying"</option>
-          <option value="poison">poison</option>
-          <option value="ground">ground</option>
-          <option value="rock">rock</option>
-          <option value="bug">bug</option>
-          <option value="ghost">ghost</option>
-          <option value="steel">steel</option>
-          <option value="fire">fire</option>
-          <option value="water">water</option>
-          <option value="grass">grass</option>
-          <option value="electric">electric</option>
-          <option value="psychic">psychic</option>
-          <option value="ice">ice</option>
-          <option value="dragon">dragon"</option>
-          <option value="dark">dark</option>
-          <option value="fairy">fairy</option>
-          <option value="unknown">unknown</option>
-          <option value="shadow">shadow</option>
-        </select>
-
-        <button id="searchButton">Search</button>
-      </form>
-
-      <section id="results"></section>
-      <section id="favorites"></section>
+      <section class="results">
+        <h2 class="results__heading">Results:</h2>
+        <div class="results__cards">
+          <div class="results__card" data-pokemon="bulbasaur">
+            <div class="results__image-div">
+              <img class="results__image" src="https://gamespot.com/a/uploads/original/1179/11799911/2309167-pikachu.jpg" />
+            </div>
+            <div class="results__info">
+              <h3 class="results__name">Bulbasaur</h3>
+              <img class="results__type" />
+              <div class="results__button-div">
+                <img class="results__icon results__icon--heart" src="/Pokathon/icons/heart.png" data-pokemon="bulbasaur" />
+                <img class="results__icon results__icon--delete" src="/Pokathon/icons/trash.svg" data-pokemon="bulbasaur" />
+              </div>
+            </div>
+          </div>
+          <div class="results__card" data-pokemon="pikachu">
+            <div class="results__image-div">
+              <img class="results__image" src="https://gamespot.com/a/uploads/original/1179/11799911/2309167-pikachu.jpg" />
+            </div>
+            <div class="results__info">
+              <h3 class="results__name">Pikachu</h3>
+              <img class="results__type" />
+              <div class="results__button-div">
+                <img class="results__icon results__icon--heart" src="/Pokathon/icons/heart.png" data-pokemon="pikachu" />
+                <img class="results__icon results__icon--delete" src="/Pokathon/icons/trash.svg" data-pokemon="pikachu" />
+              </div>
+            </div>
+          </div>
+          <div class="results__card" data-pokemon="charmander">
+            <div class="results__image-div">
+              <img class="results__image" src="https://gamespot.com/a/uploads/original/1179/11799911/2309167-pikachu.jpg" />
+            </div>
+            <div class="results__info">
+              <h3 class="results__name">Charmander</h3>
+              <img class="results__type" />
+              <div class="results__button-div">
+                <img class="results__icon results__icon--heart" id="add" src="/Pokathon/icons/heart.png" data-pokemon="charmander" />
+                <img class="results__icon results__icon--delete" id="remove" src="/Pokathon/icons/trash.svg" data-pokemon="charmander" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="favorites">
+        <h2 class="favorites__header">Favorites:</h2>
+        <div class="favorites__cards">
+          <div class="favorites__card" data-pokemon="ditto">
+            <div class="favorites__image-div">
+              <img class="favorites__image" src="https://gamespot.com/a/uploads/original/1179/11799911/2309167-pikachu.jpg" />
+            </div>
+            <div class="favorites__info">
+              <h3 class="favorites__name">Ditto</h3>
+              <p class="favorites__type">Type: Flying</p>
+              <div class="favorites__button-div">
+                <img class="favorites__icon results__icon--heart" id="add" src="/Pokathon/icons/heart.png" data-pokemon="ditto" />
+                <img class="favorites__icon results__icon--delete" id="remove" src="/Pokathon/icons/trash.svg" data-pokemon="ditto" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-
+    <footer></footer>
     <script src="./scripts/domMan.js"></script>
     <script src="./scripts/inputHandling.js"></script>
     <script src="./scripts/pokemonAPI.js"></script>

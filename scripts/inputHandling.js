@@ -11,3 +11,16 @@ searchForm.addEventListener('submit',e=>{
         generateResults(res);
     });
 });
+
+
+document.querySelectorAll(".result__icon--heart").forEach(e => {
+    e.addEventListener('click',()=>{
+
+    });
+    let pokemon = e.dataset.pokemon;
+
+    let card = e.closest("results__card");
+
+    favoritePokemon.push(pokemon);
+    elements.favorites.appendChild(card);
+});

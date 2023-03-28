@@ -1,10 +1,93 @@
-*,
-*::before,
-*::after {
+* {
+    padding: 2px;
+    margin: 2px;
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
+header {
+
+}
+
+.title {
+    border: 2px solid orange;
+}
+
+.nav {
+    border: 2px solid coral;
+
+    &__radios-dropdowns {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__search-bar {
+        width: 100%;
+        padding: 1rem;
+        background-color: lightgray;
+    }
+
+    &__radios {
+        border: 2px solid green;
+        display: flex;
+    }
+
+    &__dropdowns {
+        border: 2px solid rgb(255, 57, 255);
+        display: flex;
+    }
+    
+}
+
+main {
+    display: flex;
+}
+
+.results {
+    border: 2px solid blue;
+    padding: 1rem;
+    flex-grow: 2;
+    min-height: 25rem;
+
+    &__cards { 
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+
+    &__icon {
+        width: 2rem;
+    }
+
+    &__image {
+        width: 100%;
+    }
+
+    &__card {
+        border: 2px solid red;
+        width: 10rem;
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    
+}
+
+.favorites {
+    border: 2px solid blueviolet;
+    padding: 1rem;
+
+    &__card {
+        width: 10rem;
+        border: 2px solid red;
+    }
+
+    &__icon {
+        width: 2rem;
+    }
+
+    &__image {
+        width: 100%;
+    }
+    
+
 }

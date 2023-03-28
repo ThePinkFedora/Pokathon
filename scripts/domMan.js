@@ -5,7 +5,7 @@ const elements = {
     results: document.querySelector(".results__cards"),
     favorites: document.querySelector(".favorites__cards"),
     searchField: document.querySelector(".nav__search-bar"),
-    typeSelect: document.getElementById(".nav__dropdown"),
+    typeSelect: document.querySelector(".nav__dropdown"),
 };
 
 function clearResults(){
@@ -20,16 +20,34 @@ function generateResults(pokemonList){
     }
 }
 
+function findPokemonCard(name){
+    return document.querySelector(`.pokemon-card[data-pokemon='${name}']`);
+}
+
+function addToFavorites(pokemonName){
+    if(addFavoriteToDataset(pokemonName)){
+        let card = findPokemonCard(pokemonName);
+        elements.favorites.appendChild(card);
+    }
+}
+
+function removeFromFavorites(pokemonName){
+    if(removeFavoriteFromDataset(pokemonName)){
+        let card = findPokemonCard(pokemonName);
+        elements.results.appendChild(card);
+    }
+}
+
 function createPokemonCard(pokemon){
 
     // card
     let card = document.createElement("div");
     card.classList.add("pokemon-card");
+    card.dataset.pokemon = pokemon.name;
 
     // image div
     let imageDiv = document.createElement('div');
     imageDiv.classList.add("pokemon-card__image-div");
-    image.setAttribute('src', '????')
     
     // image itself
     let image = document.createElement('img');
@@ -42,7 +60,7 @@ function createPokemonCard(pokemon){
     // name
     let name = document.createElement("h3");
     name.classList.add("pokemon-card__name");
-    //name.textContent = pokemon.name;
+    name.innerText = pokemon.name;
 
     // type
     let type = document.createElement("img");
@@ -55,25 +73,44 @@ function createPokemonCard(pokemon){
     // add button
     let addButton = document.createElement('img');
     addButton.classList.add('pokemon-card__icon');
+    addButton.src = "./assets/icons/icon-like.svg";
+    addButton.addEventListener('click',()=>addToFavorites(pokemon.name));
 
     // remove button
     let removeButton = document.createElement('img');
     removeButton.classList.add('pokemon-card__icon');
+    removeButton.src = "./assets/icons/icon-delete.svg";
+    removeButton.addEventListener('click',()=>removeFromFavorites(pokemon.name));
 
-
-
+    imageDiv.append(image);
+    buttonDiv.append(addButton,removeButton);
+    infoDiv.append(name,type,buttonDiv);
+    card.append(imageDiv,infoDiv);
 
 
 
     getValuesAsync(pokemon.name).then(p => {
-        sprite.src = p.sprite;
+        image.src = p.sprite;
         type.src = getSpriteForType(p.type);
     });
 
-    // card.append(name,sprite,type);
-    // return card;
+    return card;
 }
 
 function getSpriteForType(type){
-    return `./assets/type/type_${type}.png`;
+    return `./assets/types/type_${type}.png`;
 }
+
+function populateTypeSelect(){
+    elements.typeSelect.innerHTML = "";
+    let values = ["any",...types];
+    for(let type of values){
+        let option = document.createElement("option");
+        option.value = type;
+        option.innerHTML = type;
+        elements.typeSelect.appendChild(option);
+    }
+}
+
+populateTypeSelect();
+clearResults();

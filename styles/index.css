@@ -18,17 +18,18 @@ body {
 }
 .nav__form {
   background-image: url(../assets/images/search_bar_1.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
   width: 100%;
-  height: 5rem;
+  height: 100%;
 }
 .nav__radios-dropdowns {
   display: flex;
   justify-content: space-between;
 }
 .nav__search-bar {
-  width: 80%;
+  width: 60%;
   padding: 1rem;
-  background-color: lightgray;
 }
 .nav__radios {
   border: 2px solid green;
@@ -48,7 +49,6 @@ main {
   padding: 1rem;
   flex-grow: 2;
   min-height: 25rem;
-  background-image: url(../assets/images/results_bg.jpg);
 }
 .results__heading {
   background-color: white;
@@ -61,6 +61,7 @@ main {
 }
 
 .pokemon-card {
+  background: #ffee80;
   border: 2px solid red;
   width: 10rem;
   margin-right: 2rem;
@@ -68,14 +69,22 @@ main {
 }
 .pokemon-card__icon {
   width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
 }
 .pokemon-card__image {
   width: 100%;
+}
+.pokemon-card__type {
+  width: 2.5rem;
 }
 
 .favorites {
   border: 2px solid blueviolet;
   padding: 1rem;
+}
+.favorites__content {
+  background-color: white;
 }
 .favorites__header {
   width: 20rem;
@@ -90,6 +99,12 @@ main {
 }
 .favorites__image {
   width: 100%;
+}
+
+.pokemon__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 footer {

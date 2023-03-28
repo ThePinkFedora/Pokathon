@@ -1,15 +1,5 @@
 
-
-/**
- * .nav__dropdown
- */
-
 const nav__dropdown = document.querySelector(".nav__dropdown");
-
-// types.forEach(t=>{
-//     let option = document.createElement("option");
-//     option.value = 
-// });
 
 
 
@@ -18,6 +8,8 @@ elements.searchForm.addEventListener('submit',e=>{
 
     let search = e.target.search.value;
     let type = e.target.type.value;
+
+    console.log(search,type);
 
     searchAsync(search,type).then(res=>{
         generateResults(res);
@@ -34,7 +26,7 @@ document.querySelectorAll(".pokemon-card__icon--heart").forEach(element => {
 
         let card = element.closest(".pokemon-card");
 
-        favoritePokemon.push(pokemon);
+        favoritePokemonList.push(pokemon);
         moveCardToFavorites(card);
     });
 });

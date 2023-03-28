@@ -1,5 +1,6 @@
 const config = {
-    production: false
+    production: true,
+    productionForBigList: false
 };
 
 const axiosConfig = {};
@@ -27,7 +28,7 @@ const types = ["normal",
     "shadow"
 ]
 const queriesTypes = [];
-const favoritePokemon = [];
+let favoritePokemonList = [];
 
 /**
  * @typedef Pokemon
@@ -65,11 +66,20 @@ const urls = {
 
 //https://pokeapi.co/api/v2/
 
-function removeFavorite(name){
-    let index = favoritePokemon.indexOf(name);
+function addFavoriteToDataset(name){
+    if( favoritePokemonList.includes(name) )return false;
+    favoritePokemonList.push(name);
+    return true;
+}
+
+function removeFavoriteFromDataset(name){
+    let index = favoritePokemonList.indexOf(name);
     if(index>-1){
-        array.splice(index, 1); 
+        favoritePokemonList = favoritePokemonList.filter(p => p!=name);
+        
+        return true;
     }
+    return false;
 }
 
 
@@ -79,7 +89,7 @@ function removeFavorite(name){
  */
 function buildPokemonListAsync(limit=1000){
     return new Promise((resolve,reject)=>{
-        let url = config.production ? urls.allPokemon : urls.allPokemon_dev
+        let url = (config.production && config.productionForBigList) ? urls.allPokemon : urls.allPokemon_dev
         url += "?limit=" + limit;
         axios.get(url,axiosConfig).then(response => {
             pokemonList = response.data.results.map((element,index) => {
@@ -119,6 +129,7 @@ function findAllByTypeAsync(type){
 
         queriesTypes.push(type);
         let url = config.production ? urls.byType : urls.byType_dev;
+        url = url.replace("%type%",type);
 
         axios.get(url,axiosConfig).then(response => {
             let pokemon = response.data.pokemon.filter(p => p.slot===1).map(p => p.pokemon);
@@ -135,39 +146,39 @@ function findAllByTypeAsync(type){
     });
 }
 
-function getTypeAsync(name){
-    return new Promise((resolve,reject)=>{
-        let pokemonObj = findByName(name);
-        if(pokemonObj.type !== null){
-            resolve(pokemonObj.type);
-            return;
-        }
+// function getTypeAsync(name){
+//     return new Promise((resolve,reject)=>{
+//         let pokemonObj = findByName(name);
+//         if(pokemonObj.type !== null){
+//             resolve(pokemonObj.type);
+//             return;
+//         }
 
-        let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
-        axios.get(url,axiosConfig).then(response => {
-            pokemonObj.sprite = response.data.sprites.front_default;
-            pokemonObj.type = response.data.type[0].type;
-            resolve(pokemonObj.type);
-        });
-    });
-}
+//         let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
+//         axios.get(url,axiosConfig).then(response => {
+//             pokemonObj.sprite = response.data.sprites.front_default;
+//             pokemonObj.type = response.data.type[0].type.name;
+//             resolve(pokemonObj.type);
+//         });
+//     });
+// }
 
-function getSpriteAsync(name){
-    return new Promise((resolve,reject) => {
-        let pokemonObj = findByName(name);
-        if(pokemonObj.sprite !== null){
-            resolve(pokemonObj.sprite);
-            return;
-        }
+// function getSpriteAsync(name){
+//     return new Promise((resolve,reject) => {
+//         let pokemonObj = findByName(name);
+//         if(pokemonObj.sprite !== null){
+//             resolve(pokemonObj.sprite);
+//             return;
+//         }
 
-        let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
-        axios.get(url,axiosConfig).then(response => {
-            pokemonObj.sprite = response.data.sprites.front_default;
-            pokemonObj.type = response.data.types[0].type;
-            resolve(pokemonObj.sprite);
-        });
-    });
-}
+//         let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
+//         axios.get(url,axiosConfig).then(response => {
+//             pokemonObj.sprite = response.data.sprites.front_default;
+//             pokemonObj.type = response.data.types[0].type.name;
+//             resolve(pokemonObj.sprite);
+//         });
+//     });
+// }
 
 /**
  * 
@@ -183,9 +194,10 @@ function getValuesAsync(name){
         }
 
         let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
+        url = url.replace("%pokemon%",name);
         axios.get(url,axiosConfig).then(response => {
             pokemonObj.sprite = response.data.sprites.front_default;
-            pokemonObj.type = response.data.types[0].type;
+            pokemonObj.type = response.data.types[0].type.name;
             resolve(pokemonObj);
         });
     });

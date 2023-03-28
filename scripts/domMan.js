@@ -121,6 +121,14 @@ function createPokemonCard(pokemon){
 
 
     getValuesAsync(pokemon.name).then(p => {
+        if(!p.sprite){
+            console.error(`Missing sprite after getValuesAsync on ${p.name}`);
+        }
+        if(!p.type){
+            console.error(`Missing type after getValuesAsync on ${p.name}`);
+        }
+        
+
         image.src = p.sprite;
         type.src = getSpriteForType(p.type);
     });

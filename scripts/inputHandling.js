@@ -16,12 +16,3 @@ elements.searchForm.addEventListener('submit',e=>{
     });
 });
 
-
-
-
-// function moveCardToFavorites(card){
-//     elements.favorites.appendChild(card);
-// }
-// function moveCardToResults(card){
-//     elements.results.appendChild(card);
-// }

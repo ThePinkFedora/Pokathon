@@ -4,7 +4,7 @@ const config = {
 
 const axiosConfig = {};
 
-let pokemon = [];
+let pokemonList = [];
 const types = ["normal",
     "fighting",
     "flying",
@@ -77,7 +77,7 @@ function buildPokemonListAsync(limit=1000){
         let url = config.production ? urls.allPokemon : urls.allPokemon_dev
         url += "?limit=" + limit;
         axios.get(url,axiosConfig).then(response => {
-            pokemon = response.data.results.map((element,index) => {
+            pokemonList = response.data.results.map((element,index) => {
                 return {
                     name: element.name,
                     url: element.url,
@@ -87,7 +87,7 @@ function buildPokemonListAsync(limit=1000){
                 }
             })
 
-            resolve(pokemon);
+            resolve(pokemonList);
         });
     });
 }
@@ -99,9 +99,15 @@ function buildPokemonListAsync(limit=1000){
  */
 function findAllByTypeAsync(type){
     return new Promise((resolve, reject)=>{
+        ///If type is any retuurn all
+        if(type==="any"){
+            resolve(pokemonList);
+            return;
+        }
+
         ///If we've queried the type, return the filtered list
         if(queriesTypes.includes(type)){
-            resolve(pokemon.filter(p => p.type === type));
+            resolve(pokemonList.filter(p => p.type === type));
             return;
         }
 
@@ -124,6 +130,23 @@ function findAllByTypeAsync(type){
     });
 }
 
+function getTypeAsync(name){
+    return new Promise((resolve,reject)=>{
+        let pokemonObj = findByName(name);
+        if(pokemonObj.type !== null){
+            resolve(pokemonObj.type);
+            return;
+        }
+
+        let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
+        axios.get(url,axiosConfig).then(response => {
+            pokemonObj.sprite = response.data.sprites.front_default;
+            pokemonObj.type = response.data.type[0].type;
+            resolve(pokemonObj.type);
+        });
+    });
+}
+
 function getSpriteAsync(name){
     return new Promise((resolve,reject) => {
         let pokemonObj = findByName(name);
@@ -135,13 +158,36 @@ function getSpriteAsync(name){
         let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
         axios.get(url,axiosConfig).then(response => {
             pokemonObj.sprite = response.data.sprites.front_default;
+            pokemonObj.type = response.data.types[0].type;
             resolve(pokemonObj.sprite);
         });
     });
 }
 
+/**
+ * 
+ * @param {string} name 
+ * @returns {Pokemon}
+ */
+function getValuesAsync(name){
+    return new Promise((resolve,reject) => {
+        let pokemonObj = findByName(name);
+        if(pokemonObj.sprite !== null){
+            resolve(pokemonObj.sprite);
+            return;
+        }
+
+        let url = config.production ? urls.specificPokemon : urls.specificPokemon_dev;
+        axios.get(url,axiosConfig).then(response => {
+            pokemonObj.sprite = response.data.sprites.front_default;
+            pokemonObj.type = response.data.types[0].type;
+            resolve(pokemonObj);
+        });
+    });
+}
+
 function findByName(name){
-    return pokemon.find(p => p.name === name);
+    return pokemonList.find(p => p.name === name);
 } 
 
 buildPokemonListAsync();
@@ -151,3 +197,30 @@ buildPokemonListAsync();
 
 
 //# Search Methods
+/**
+ * 
+ * @param {string} text 
+ * @param {string} type 
+ */
+function searchAsync(text,type="any"){
+    return new Promise((resolve,reject)=>{
+        text = text.toLowerCase();
+
+        findAllByTypeAsync(type).then(res => {
+            console.log("Res before text filtering: ");
+            console.log(res);
+            console.log("Res after text filtering: ");
+            let filtered = res.filter(e => e.name.includes(text));
+            console.log(filtered);
+            resolve(filtered);
+        });
+        // if(type !== "any" && !queriesTypes.includes("any")){
+        //     findAllByTypeAsync(type).then(res=>{
+
+        //     });
+        // }
+        // let results = pokemonList.filter(p=>{
+        //     return p.name.includes(text) && (type=="any" || p.type===type);
+        // });
+    });
+}

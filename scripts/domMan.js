@@ -1,6 +1,6 @@
 
 const elements = {
-    searchForm: document.getElementById("searchForm"),
+    searchForm: document.getElementById("form"),
     results: document.getElementById("results"),
     favorites: document.getElementById("favorites"),
     searchField: document.getElementById("searchField"),

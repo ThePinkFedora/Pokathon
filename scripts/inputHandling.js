@@ -1,7 +1,7 @@
 
 
 
-searchForm.addEventListener('submit',e=>{
+elements.searchForm.addEventListener('submit',e=>{
     e.preventDefault();
 
     let search = e.target.search.value;
@@ -13,14 +13,13 @@ searchForm.addEventListener('submit',e=>{
 });
 
 
-document.querySelectorAll(".result__icon--heart").forEach(e => {
-    e.addEventListener('click',()=>{
+document.querySelectorAll(".result__icon--heart").forEach(element => {
+    element.addEventListener('click',()=>{
+        let pokemon = element.dataset.pokemon;
 
+        let card = element.closest("results__card");
+
+        favoritePokemon.push(pokemon);
+        elements.favorites.appendChild(card);
     });
-    let pokemon = e.dataset.pokemon;
-
-    let card = e.closest("results__card");
-
-    favoritePokemon.push(pokemon);
-    elements.favorites.appendChild(card);
 });

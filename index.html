@@ -18,6 +18,7 @@
           <div class="nav__search">
             <input class="nav__search-bar" placeholder="Search for a Pokemon:" type="search" name="search" id="search" />
           </div>
+          <div class="nav__dropdowns-button">
           <div class="nav__radios-dropdowns">
             <div class="nav__dropdown-div">
               <select class="nav__dropdown" name="type" id="type">
@@ -26,13 +27,14 @@
             </div>
           </div>
           <button>Search</button>
+        </div>
         </form>
       </nav>
     </header>
     <main>
       <section class="results">
         <h2 class="results__heading">Results:</h2>
-        <div class="results__cards">
+        <div class="pokemon__cards">
           <div class="pokemon-card" data-pokemon="bulbasaur">
             <div class="pokemon-card__image-div">
               <img class="pokemon-card__image" src="https://gamespot.com/a/uploads/original/1179/11799911/2309167-pikachu.jpg" />
@@ -143,7 +145,7 @@
         <img class="favorites__header" src="/assets/images/header_favorites.jpg" alt="favorites header"></img>
         <h2 class="favorites__header"></h2>
         <div class="favorites__cards">
-          <div class="pokemon-card" data-pokemon="ditto">
+          <!-- <div class="pokemon-card" data-pokemon="ditto">
             <div class="pokemon-card__image-div">
               <img class="pokemon-card__image" src="https://gamespot.com/a/uploads/original/1179/11799911/2309167-pikachu.jpg" />
             </div>
@@ -155,7 +157,7 @@
                 <img class="pokemon-card__icon pokemon-card__icon--delete" id="remove" src="./assets/icons/icon-delete.svg" data-pokemon="ditto" />
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </main>

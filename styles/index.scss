@@ -12,7 +12,7 @@ body {
 header {}
 
 .title {
-    // border: 2px solid orange;
+  
 
     &__image {
         width: 100%;
@@ -20,7 +20,8 @@ header {}
 }
 
 .nav {
-    border: 2px solid coral;
+  max-width: 1200px;
+  margin: 0 auto;
 
     &__form {
         //background-image: url(../assets/images/search_bar_1.jpg);
@@ -28,7 +29,16 @@ header {}
         background-size: 100%;
         background-repeat: no-repeat;
         width: 100%;
-        height: 100%;
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        
+    }
+
+    &__dropdowns-button {
+        display: flex;
+        
+
     }
 
     &__radios-dropdowns {
@@ -44,12 +54,12 @@ header {}
     }
 
     &__radios {
-        border: 2px solid green;
+        
         display: flex;
     }
 
     &__dropdowns {
-        border: 2px solid rgb(255, 57, 255);
+        
         display: flex;
     }
 
@@ -57,10 +67,15 @@ header {}
 
 main {
     display: flex;
+    padding: 0 2rem;
+    gap: 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
 .results {
-    border: 2px solid blue;
+    border: 2px solid #3B4CCa;
+    border-radius: 1rem;
     padding: 1rem;
     flex-grow: 2;
     min-height: 25rem;
@@ -80,17 +95,18 @@ main {
 }
 
 .pokemon-card{
-    background:#ffee80;
-    border: 2px solid red;
     width: 10rem;
     margin-right: 2rem;
     margin-bottom: 2rem;
+    background-color: white;
 
     &__icon {
         width: 2rem;
         height: 2rem;
         margin-right: 1rem;
     }
+
+
 
     &__image {
         width: 100%;
@@ -100,8 +116,12 @@ main {
         width: 2.5rem;
     }
 }
+
+
+
 .favorites {
-    border: 2px solid blueviolet;
+    border: 2px solid #FFDE00;
+    border-radius: 1rem;
     padding: 1rem;
 
     &__content {
@@ -139,4 +159,6 @@ main {
 
 footer {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }

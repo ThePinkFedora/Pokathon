@@ -82,6 +82,10 @@ function removeFavoriteFromDataset(name){
     return false;
 }
 
+function getAllFavoritePokemon(){
+    return favoritePokemonList.map(p => findByName(p));
+}
+
 
 /**
  * 

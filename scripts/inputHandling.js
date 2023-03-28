@@ -1,5 +1,17 @@
 
 
+/**
+ * .nav__dropdown
+ */
+
+const nav__dropdown = document.querySelector(".nav__dropdown");
+
+// types.forEach(t=>{
+//     let option = document.createElement("option");
+//     option.value = 
+// });
+
+
 
 elements.searchForm.addEventListener('submit',e=>{
     e.preventDefault();
@@ -14,7 +26,7 @@ elements.searchForm.addEventListener('submit',e=>{
 
 
 let hearts = document.querySelectorAll(".pokemon-card__icon--heart");
-console.log(hearts);
+
 document.querySelectorAll(".pokemon-card__icon--heart").forEach(element => {
     element.addEventListener('click',()=>{
         
